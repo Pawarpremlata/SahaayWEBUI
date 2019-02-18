@@ -1,0 +1,405 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.9037,19.0792 ]
+    },
+    "properties": {
+    "address":"Jayant Arcade,4Th Floor, Rajawadi,M.G.Road,Ghatkopar(E)",
+    "name":"Bakul Parekh Children's Hospital",
+    "contact_no":2221026858,
+    "category":"private",
+    "timings":"24*7",
+    "burn_care_unit":"no",
+    "cardiology":"no",
+    "neurology":"no",
+    "maternity":"no",
+    "orthopaedics":"no",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.9057,19.0783 ]
+    },
+    "properties": {
+    "address":"1, 2, 3, Gautam Building, Opposite Balaji Temple, Tilak Road, Ghatkopar (East)",
+    "name":"Dr Trivedis Maternity and Nursing Home",
+    "contact_no":2261480707,
+    "category":"private",
+    "timings":"24*7",
+    "burn_care_unit":"no",
+    "cardiology":"no",
+    "neurology":"no",
+    "maternity":"no",
+    "orthopaedics":"no",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.9062,19.0853 ]
+    },
+    "properties": {
+    "address":"Shradhanand Road, Ghatkopar (W), Mumbai",
+    "name":"H. J. Doshi Ghatkopar Hindu Sabha Hospital",
+    "contact_no":2225094451,
+    "category":"private",
+    "timings":"24*7",
+    "burn_care_unit":"no",
+    "cardiology":"yes",
+    "neurology":"yes",
+    "maternity":"yes",
+    "orthopaedics":"no",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.8829242,19.0625228 ]
+    },
+    "properties": {
+    "address":"S.G.Barve Road Kurla Mumbai--70",
+    "name":"Dr .Desais Nursing Home",
+    "contact_no":2226525251,
+    "category":"private",
+    "timings":"10:00 am - 1:00 pm & 6:00 pm - 8:00 pm",
+    "burn_care_unit":"no",
+    "cardiology":"no",
+    "neurology":"no",
+    "maternity":"yes",
+    "orthopaedics":"no",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.843,19.0769 ]
+    },
+    "properties": {
+    "address":"121, Nehru Nagar Kurla (East) Mumbai",
+    "name":"Ashvini Maternity and Surgical Nursing Home",
+    "contact_no":2225140472,
+    "category":"private",
+    "timings":"24*7",
+    "burn_care_unit":"no",
+    "cardiology":"no",
+    "neurology":"no",
+    "maternity":"yes",
+    "orthopaedics":"no",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.8863,19.0761 ]
+    },
+    "properties": {
+    "address":"Kurla(E)",
+    "name":"Kohinoor Hospital",
+    "contact_no":2267556755,
+    "category":"private",
+    "timings":"24*7",
+    "burn_care_unit":"yes",
+    "cardiology":"yes",
+    "neurology":"yes",
+    "maternity":"yes",
+    "orthopaedics":"yes",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.9047,19.0844 ]
+    },
+    "properties": {
+    "address":"Kirol Road, Opp: Lbs Road, Kurla - West Mumbai",
+    "name":"Shreeji Hospital",
+    "contact_no":2225153465,
+    "category":"private",
+    "timings":"24*7",
+    "burn_care_unit":"no",
+    "cardiology":"no",
+    "neurology":"yes",
+    "maternity":"yes",
+    "orthopaedics":"no",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.9049,19.0825 ]
+    },
+    "properties": {
+    "address":"Nilkanth Shopping Centre Corner Cama Lane, Ghatkopar, West Mumbai",
+    "name":"Varun Cardiac Clinic",
+    "contact_no":2225010600,
+    "category":"private",
+    "timings":"24*7",
+    "burn_care_unit":"no",
+    "cardiology":"yes",
+    "neurology":"no",
+    "maternity":"no",
+    "orthopaedics":"no",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.9051026,19.082354 ]
+    },
+    "properties": {
+    "address":"101-102, Gayatridham, Derasar Lane, Ghatkopar(E)",
+    "name":"Aryan Hospital and Iccu - Kurla-Mumbai",
+    "contact_no":2225275999,
+    "category":"private",
+    "timings":"24*7",
+    "burn_care_unit":"no",
+    "cardiology":"yes",
+    "neurology":"no",
+    "maternity":"no",
+    "orthopaedics":"yes",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.8819,19.0811 ]
+    },
+    "properties": {
+    "address":"D-28 & 29, Nehru Nagar, Station Road, Kurla (East),Mumbai",
+    "name":"Ashvini Maternity and Surgical Nursing Home",
+    "contact_no":2225140472,
+    "category":"private",
+    "timings":"24*7",
+    "burn_care_unit":"no",
+    "cardiology":"no",
+    "neurology":"no",
+    "maternity":"yes",
+    "orthopaedics":"yes",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.8770505,19.0754649 ]
+    },
+    "properties": {
+    "address":"121, Nehru Nagar Kurla (East) Mumbai",
+    "name":"City Hospital And Reserch Centre",
+    "contact_no":2225041888,
+    "category":"private",
+    "timings":"24*7",
+    "burn_care_unit":"yes",
+    "cardiology":"yes",
+    "neurology":"yes",
+    "maternity":"yes",
+    "orthopaedics":"yes",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.9379362,19.1403981 ]
+    },
+    "properties": {
+    "address":"Sagar Palace B Wing, Sonapur Lane, F.P.P. Marg, Off L B S Marg, Kurla (W) Mumbai",
+    "name":"CGHS Dispensary No.6, Ghatkopar",
+    "contact_no":2225149229,
+    "category":"Government",
+    "timings":"7.30-2pm",
+    "burn_care_unit":"no",
+    "cardiology":"no",
+    "neurology":"no",
+    "maternity":"no",
+    "orthopaedics":"no",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.9067,19.0825 ]
+    },
+    "properties": {
+    "address":"Flat No.25, C.G.S.Colony, Ghatkopar",
+    "name":"Cg Eye Foundaton and Shree Ghatkopar Brahman Samaj",
+    "contact_no":2225012071,
+    "category":"private",
+    "timings":"9am-7pm",
+    "burn_care_unit":"no",
+    "cardiology":"no",
+    "neurology":"no",
+    "maternity":"no",
+    "orthopaedics":"no",
+    "opthalmology":"yes"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.9066,19.0748 ]
+    },
+    "properties": {
+    "address":"Samaj Bhavan, 5Th Floor, Joshi Lane, M G Road, Ghatkopar",
+    "name":"Nayan Eye Centre",
+    "contact_no":9820998830,
+    "category":"private",
+    "timings":"10am to 1pm, 5pm to 8pm",
+    "burn_care_unit":"no",
+    "cardiology":"no",
+    "neurology":"no",
+    "maternity":"no",
+    "orthopaedics":"no",
+    "opthalmology":"yes"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.9055,19.0762 ]
+    },
+    "properties": {
+    "address":"Chandrika Bldg., Ground Floor, R.B.Mehta Rd, Ghatkopar(E), Mumbai",
+    "name":"Dr Mehta Nursing Home",
+    "contact_no":2225062742,
+    "category":"private",
+    "timings":"10am-8pm",
+    "burn_care_unit":"no",
+    "cardiology":"no",
+    "neurology":"no",
+    "maternity":"no",
+    "orthopaedics":"no",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.9038,19.0695 ]
+    },
+    "properties": {
+    "address":"198/1, Garodia Palace, Garodia Nagar, 90 Feet Road, Ghatkopar (E),",
+    "name":"Ashirwad Heart Hospital",
+    "contact_no":2221025911,
+    "category":"private",
+    "timings":"24*7",
+    "burn_care_unit":"no",
+    "cardiology":"yes",
+    "neurology":"no",
+    "maternity":"no",
+    "orthopaedics":"no",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.8819,19.0811 ]
+    },
+    "properties": {
+    "address":"1, Vivek - 67, Tilak Road, Ghatkopar (E), Mumbai",
+    "name":"Rane Heart Hospital",
+    "contact_no":2225258404,
+    "category":"private",
+    "timings":"24*7",
+    "burn_care_unit":"no",
+    "cardiology":"yes",
+    "neurology":"no",
+    "maternity":"no",
+    "orthopaedics":"no",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.9011,19.0598 ]
+    },
+    "properties": {
+    "address":"37, Pestom Sagar, Road No.2, Chembur",
+    "name":"City Hospital And Reserch Centre",
+    "contact_no":2225041888,
+    "category":"private",
+    "timings":"24*7",
+    "burn_care_unit":"no",
+    "cardiology":"yes",
+    "neurology":"yes",
+    "maternity":"yes",
+    "orthopaedics":"yes",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.899,19.0597 ]
+    },
+    "properties": {
+    "address":"Sagar Palace B Wing, Sonapur Lane, F.P.P. Marg, Off L B S Marg, Kurla (W) Mumbai",
+    "name":"Kolekar Hospiatal",
+    "contact_no":222520115,
+    "category":"private",
+    "timings":"24*7",
+    "burn_care_unit":"no",
+    "cardiology":"no",
+    "neurology":"no",
+    "maternity":"yes",
+    "orthopaedics":"yes",
+    "opthalmology":"no"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 72.9037,19.0792 ]
+    },
+    "properties": {
+    "address":"Rameshwara Complex",
+    "name":"Aayush Eye Clinic",
+    "contact_no":2225288306,
+    "category":"private",
+    "timings":"10am to 1pm, 5pm to 8pm",
+    "burn_care_unit":"no",
+    "cardiology":"no",
+    "neurology":"no",
+    "maternity":"no",
+    "orthopaedics":"no",
+    "opthalmology":"yes"
+    }
+  }
+]
+}
