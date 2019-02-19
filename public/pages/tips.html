@@ -30,10 +30,11 @@
   <script>
   var vid_data;
   var id_list = [];
+  var API_KEY = "AIzaSyCd00jxfl7g4KY4WdpyFsabcJHcqxK0GjA";
 
   // Method for the setting up Youtube Data api v3
   function search_query() {
-    gapi.client.setApiKey("AIzaSyCd00jxfl7g4KY4WdpyFsabcJHcqxK0GjA");
+    gapi.client.setApiKey(API_KEY);
     gapi.client.load('youtube', 'v3', function() {
       load_Request();
     });
