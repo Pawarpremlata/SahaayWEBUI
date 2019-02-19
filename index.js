@@ -21,4 +21,4 @@ app.get("/tips", function(req, res) {
 
 app.listen(3001);
 
-console.log("Running at Port 3001");
+console.log("Running at http://localhost:3001 ");

@@ -39,7 +39,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">Filters for Hospitals</div>
             <div class="panel-body">
-              <button type="button" class="btn btn-default" div="showNearest">Show nearest</button><br><br>
+              <button type="button" class="btn btn-default" id="showNearest">Show nearest</button><br><br>
               <div class="form-group">
                 <label for="distanceRadius">Distance radius:</label>
                 <select class="form-control" id="distanceRadius">
@@ -55,16 +55,13 @@
               </div>
               <h5><b>Category: </b></h5>
               <div class="radio">
-                <label><input type="radio" name="optradio" checked>All</label>
+                <label><input type="radio" name="category" checked="checked" id="all" value="All">All</label>
               </div>
               <div class="radio">
-                <label><input type="radio" name="optradio">Public</label>
+                <label><input type="radio" name="category" id="public" value="Public">Public</label>
               </div>
               <div class="radio">
-                <label><input type="radio" name="optradio">Private</label>
-              </div>
-              <div class="radio">
-                <label><input type="radio" name="optradio">Semi-private</label>
+                <label><input type="radio" name="category" id="private" value="Private">Private</label>
               </div>
               <h5><b>Services: </b></h5>
               <div class="checkbox">
@@ -119,15 +116,27 @@
         }).addTo(map);
 
 
-        function onLocationFound(e) {
-          L.marker(e.latlng).addTo(map);
+        function onLocationFound(myloc) {
+          L.marker(myloc.latlng).addTo(map);
           var filterCircle;
-
           var myLayer = L.mapbox.featureLayer().loadURL('/data/kurla.geojson');
           myLayer.on('ready', function(e) {
             var clusterGroup = new L.markerClusterGroup();
+            e.target.eachLayer(function(layer) {
+              clusterGroup.addLayer(layer);
+            });
+            map.addLayer(clusterGroup);
+            //map.fitBounds(myLayer.getBounds());
+            myLayer.eachLayer(function(layer) {
+              layer.bindPopup('<strong>' + layer.feature.properties.name + '</strong>', { closeButton: true });
+            });
+            myLayer.on('click', function(e) {
+              e.layer.openPopup();
+            });
+
             clusterGroup.on('click', function(a) {
               //console.log(a.layer.feature.properties);
+              $("#hospital_distance").html(myloc.latlng.distanceTo(L.latLng(a.layer.feature.geometry.coordinates[1], a.layer.feature.geometry.coordinates[0])) + ' m');
               $("#hospital_name").html(a.layer.feature.properties.name);
               $("#hospital_address").html(a.layer.feature.properties.address);
               $("#hospital_category").html(a.layer.feature.properties.category);
@@ -141,41 +150,49 @@
             clusterGroup.on('clusterclick', function(a) {
               console.log('cluster ' + a.layer.getAllChildMarkers().length);
             });
-            e.target.eachLayer(function(layer) {
-              clusterGroup.addLayer(layer);
+
+            $("#distanceRadius").on('change', function() {
+              var radius = $("#distanceRadius").val() * 1000;
+              if (filterCircle != undefined) {
+                map.removeLayer(filterCircle);
+              };
+              if (radius != 0) {
+                filterCircle = new L.circle(myloc.latlng, radius, {
+                  opacity: 1,
+                  weight: 1,
+                  fillOpacity: 0.3
+                }).addTo(map);
+                filterCircle.setLatLng(myloc.latlng);
+                clusterGroup.clearLayers();
+                e.target.eachLayer(function(layer) {
+                  if (myloc.latlng.distanceTo(L.latLng(layer.feature.geometry.coordinates[1], layer.feature.geometry.coordinates[0])) < radius) {
+                    clusterGroup.addLayer(layer);
+                  }
+                });
+                map.addLayer(clusterGroup);
+
+              } else {
+                clusterGroup.clearLayers();
+                e.target.eachLayer(function(layer) {
+                  clusterGroup.addLayer(layer);
+                });
+                map.addLayer(clusterGroup);
+              }
             });
-            map.addLayer(clusterGroup);
-            //map.fitBounds(myLayer.getBounds());
-            myLayer.eachLayer(function(layer) {
-              layer.bindPopup('<strong>' + layer.feature.properties.name + '</strong>', { closeButton: true });
-            });
-            myLayer.on('click', function(e) {
-              e.layer.openPopup();
-            });
+            $("#showNearest").on('click', function() {
+              var minDistance = 10000;
+              var minLayer;
+              clusterGroup.clearLayers();
+              e.target.eachLayer(function(layer) {
+                if (myloc.latlng.distanceTo(L.latLng(layer.feature.geometry.coordinates[1], layer.feature.geometry.coordinates[0])) < minDistance) {
+                  minDistance = myloc.latlng.distanceTo(L.latLng(layer.feature.geometry.coordinates[1], layer.feature.geometry.coordinates[0]))
+                  minLayer = layer;
+                }
+              });
+              clusterGroup.addLayer(minLayer);
+              map.addLayer(clusterGroup);
+            })
           });
-
-
-          $("#distanceRadius").on('change', function(x) {
-            var radius = $("#distanceRadius").val() * 1000;
-            if (filterCircle != undefined) {
-              map.removeLayer(filterCircle);
-            };
-            if (radius != 0) {
-              filterCircle = new L.circle(e.latlng, radius, {
-                opacity: 1,
-                weight: 1,
-                fillOpacity: 0.3
-              }).addTo(map);
-              filterCircle.setLatLng(e.latlng);
-
-              myLayer.setFilter(showInDistanceRange);
-            }
-          });
-
-          function showInDistanceRange(feature) {
-            var radius = $("#distanceRadius").val() * 1000;
-            return e.latlng.distanceTo(L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0])) < radius;
-          }
         }
 
 
@@ -186,49 +203,45 @@
         map.on('locationfound', onLocationFound);
         map.on('locationerror', onLocationError);
 
-        map.locate({ setView: true, maxZoom: 15 });
+        map.locate({ setView: true, maxZoom: 16 });
         </script>
       </div>
       <div class="col-lg-4">
         <h2 align="center" id='hospital_name'>-</h2>
         <div class="table-responsive">
           <table class="table">
-            <thead>
-              <tr>
-                <th>Distance</th>
-                <th>-</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Address</td>
-                <td id='hospital_address'>-</td>
-              </tr>
-              <tr>
-                <td>Category</td>
-                <td id='hospital_category'>-</td>
-              </tr>
-              <tr>
-                <td>Speciality</td>
-                <td id='hospital_speciality'>-</td>
-              </tr>
-              <tr>
-                <td>Services</td>
-                <td id='hospital_services'>-</td>
-              </tr>
-              <tr>
-                <td>Timings</td>
-                <td id='hospital_timings'>-</td>
-              </tr>
-              <tr>
-                <td>Contact</td>
-                <td id='hospital_contact'>-</td>
-              </tr>
-              <tr>
-                <td>Ratings</td>
-                <td id='hospital_ratings'>-</td>
-              </tr>
-            </tbody>
+            <tr>
+              <td>Distance</td>
+              <td id='hospital_distance'>-</td>
+            </tr>
+            <tr>
+              <td>Address</td>
+              <td id='hospital_address'>-</td>
+            </tr>
+            <tr>
+              <td>Category</td>
+              <td id='hospital_category'>-</td>
+            </tr>
+            <tr>
+              <td>Speciality</td>
+              <td id='hospital_speciality'>-</td>
+            </tr>
+            <tr>
+              <td>Services</td>
+              <td id='hospital_services'>-</td>
+            </tr>
+            <tr>
+              <td>Timings</td>
+              <td id='hospital_timings'>-</td>
+            </tr>
+            <tr>
+              <td>Contact</td>
+              <td id='hospital_contact'>-</td>
+            </tr>
+            <tr>
+              <td>Ratings</td>
+              <td id='hospital_ratings'>-</td>
+            </tr>
           </table>
         </div>
       </div>
