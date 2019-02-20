@@ -64,23 +64,26 @@
                 <label><input type="radio" name="category" id="private" value="Private">Private</label>
               </div>
               <h5><b>Services: </b></h5>
-              <div class="checkbox">
-                <label><input type="checkbox" value="">Burn care unit</label>
+              <div class="radio">
+                <label><input  type="radio" name="services" id="general" value="General">General</label>
               </div>
-              <div class="checkbox">
-                <label><input type="checkbox" value="">Cardiology</label>
+              <div class="radio">
+                <label><input  type="radio" name="services" id="burn_care_unit" value="Burn_care_unit">Burn care unit</label>
               </div>
-              <div class="checkbox">
-                <label><input type="checkbox" value="">Neurology</label>
+              <div class="radio">
+                <label><input  type="radio" name="services" id="cardiology" value="Cardiology">Cardiology</label>
               </div>
-              <div class="checkbox">
-                <label><input type="checkbox" value="">Maternity ward </label>
+              <div class="radio"> 
+                <label><input  type="radio" name="services" id="neurology" value="Neurology">Neurology</label>
               </div>
-              <div class="checkbox">
-                <label><input type="checkbox" value="">Ophthalmology</label>
+              <div class="radio">
+                <label><input  type="radio" name="services" id="maternity_ward" value="Maternity_ward">Maternity ward </label>
               </div>
-              <div class="checkbox">
-                <label><input type="checkbox" value="">Orthopaedics</label>
+              <div class="radio">
+                <label><input  type="radio" name="services" id="ophthalmology"   value="Ophthalmology">Ophthalmology</label>
+              </div>
+              <div class="radio">
+                <label><input  type="radio" name="services" id="orthopaedics" value="Orthopaedics">Orthopaedics</label>
               </div>
               <h5><b>Budget Range:</b></h5>
               <div class="form-group row">
@@ -150,35 +153,7 @@
             clusterGroup.on('clusterclick', function(a) {
               console.log('cluster ' + a.layer.getAllChildMarkers().length);
             });
-
-            $("#distanceRadius").on('change', function() {
-              var radius = $("#distanceRadius").val() * 1000;
-              if (filterCircle != undefined) {
-                map.removeLayer(filterCircle);
-              };
-              if (radius != 0) {
-                filterCircle = new L.circle(myloc.latlng, radius, {
-                  opacity: 1,
-                  weight: 1,
-                  fillOpacity: 0.3
-                }).addTo(map);
-                filterCircle.setLatLng(myloc.latlng);
-                clusterGroup.clearLayers();
-                e.target.eachLayer(function(layer) {
-                  if (myloc.latlng.distanceTo(L.latLng(layer.feature.geometry.coordinates[1], layer.feature.geometry.coordinates[0])) < radius) {
-                    clusterGroup.addLayer(layer);
-                  }
-                });
-                map.addLayer(clusterGroup);
-
-              } else {
-                clusterGroup.clearLayers();
-                e.target.eachLayer(function(layer) {
-                  clusterGroup.addLayer(layer);
-                });
-                map.addLayer(clusterGroup);
-              }
-            });
+            
             $("#showNearest").on('click', function() {
               var minDistance = 10000;
               var minLayer;
@@ -191,9 +166,91 @@
               });
               clusterGroup.addLayer(minLayer);
               map.addLayer(clusterGroup);
+              map.fitBounds(clusterGroup.getBounds());
             })
-          });
-        }
+            $("#distanceRadius").on('change', applyFilters);
+            $("input[name=category]:radio").on('click', applyFilters);
+            $("input[name=services]:radio").on('click', applyFilters);
+            
+	    function applyFilters(){
+	      clusterGroup.clearLayers();
+	      var radius = $("#distanceRadius").val() * 1000;
+              if (filterCircle != undefined) {
+                map.removeLayer(filterCircle);
+              };
+              if (radius != 0) {
+                filterCircle = new L.circle(myloc.latlng, radius, {
+                  opacity: 1,
+                  weight: 1,
+                  fillOpacity: 0.3
+                }).addTo(map);
+                filterCircle.setLatLng(myloc.latlng);
+                e.target.eachLayer(function(layer) {
+                  if (myloc.latlng.distanceTo(L.latLng(layer.feature.geometry.coordinates[1], layer.feature.geometry.coordinates[0])) < radius) {
+                    clusterGroup.addLayer(layer);
+                  }
+                });
+              } else {
+                e.target.eachLayer(function(layer) {
+                  clusterGroup.addLayer(layer);
+                });
+              }
+	      if ($('input[name=services]:checked').val() == "Burn_care_unit") {
+		clusterGroup.eachLayer(function(layer) {
+		  if (layer.feature.properties.burn_care_unit=="no") {
+		    clusterGroup.removeLayer(layer);
+		  }
+		});
+	      } else if ($('input[name=services]:checked').val() == "Cardiology") {
+		clusterGroup.eachLayer(function(layer) {
+		  if (layer.feature.properties.cardiology=="no") {
+		    clusterGroup.removeLayer(layer);
+		  }
+		});
+	      }else if ($('input[name=services]:checked').val() == "Neurology") {
+		clusterGroup.eachLayer(function(layer) {
+		  if (layer.feature.properties.neurology=="no") {
+		    clusterGroup.removeLayer(layer);
+		  }
+		});
+	      }else if ($('input[name=services]:checked').val() == "Maternity_ward") {
+		clusterGroup.eachLayer(function(layer) {
+		  if (layer.feature.properties.maternity=="no") {
+		    clusterGroup.removeLayer(layer);
+		  }
+		});
+	      }else if ($('input[name=services]:checked').val() == "Orthopaedics") {
+		clusterGroup.eachLayer(function(layer) {
+		  if (layer.feature.properties.orthopaedics=="no") {
+		    clusterGroup.removeLayer(layer);
+		  }
+		});
+	      }else if ($('input[name=services]:checked').val() == "Ophthalmology") {
+		clusterGroup.eachLayer(function(layer) {
+		  if (layer.feature.properties.opthalmology=="no") {
+		    clusterGroup.removeLayer(layer);
+		  }
+		});
+	      }
+	      if ($('input[name=category]:checked').val() == "Public") {
+		clusterGroup.eachLayer(function(layer) {
+		  if (layer.feature.properties.category!="public") {
+		    clusterGroup.removeLayer(layer);
+		  }
+		});
+	      } else if ($('input[name=category]:checked').val() == "Private") {
+		clusterGroup.eachLayer(function(layer) {
+		  if (layer.feature.properties.category!="private") {
+		    clusterGroup.removeLayer(layer);
+		  }
+		});
+	      }
+
+	      map.addLayer(clusterGroup);
+	      map.fitBounds(clusterGroup.getBounds());
+	    }
+           });
+         }
 
 
         function onLocationError(e) {
