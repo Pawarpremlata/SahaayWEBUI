@@ -65,7 +65,7 @@
               </div>
               <h5><b>Services: </b></h5>
               <div class="radio">
-                <label><input type="radio" name="services" id="general" value="General">General</label>
+                <label><input type="radio" name="services" checked="checked" id="general" value="General">General</label>
               </div>
               <div class="radio">
                 <label><input type="radio" name="services" id="burn_care_unit" value="Burn_care_unit">Burn care unit</label>
@@ -122,7 +122,7 @@
         function onLocationFound(myloc) {
           L.marker(myloc.latlng).addTo(map);
           var filterCircle;
-          var myLayer = L.mapbox.featureLayer().loadURL('/data/kurla.geojson');
+          var myLayer = L.mapbox.featureLayer().loadURL('/data/kurla_info.geojson');
           myLayer.on('ready', function(e) {
             var clusterGroup = new L.markerClusterGroup();
             e.target.eachLayer(function(layer) {
