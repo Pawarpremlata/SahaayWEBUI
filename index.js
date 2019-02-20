@@ -19,6 +19,18 @@ app.get("/tips", function(req, res) {
 	res.sendFile(path.join(__dirname + "/public/pages/tips.html"));
 });
 
+app.get("/feedback", function(req, res) {
+	res.sendFile(path.join(__dirname + "/public/pages/feedback.html"));
+});
+
+app.get("/signup", function(req, res) {
+	res.sendFile(path.join(__dirname + "/public/pages/signup.html"));
+});
+
+app.get("/login", function(req, res) {
+	res.sendFile(path.join(__dirname + "/public/pages/login.html"));
+});
+
 app.listen(3001);
 
 console.log("Running at http://localhost:3001 ");
