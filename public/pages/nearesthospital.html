@@ -77,7 +77,7 @@
                 <label><input type="radio" name="services" id="maternity_ward" value="Maternity_ward">Maternity ward </label>
               </div>
               <div class="radio">
-                <label><input type="radio" name="services" id="ophthalmology" value="Ophthalmology">Ophthalmology</label>
+                <label><input type="radio" name="services" id="ophthalmology" value="Opthalmology">Ophthalmology</label>
               </div>
               <div class="radio">
                 <label><input type="radio" name="services" id="orthopaedics" value="Orthopaedics">Orthopaedics</label>
@@ -133,13 +133,22 @@
             });
 
             clusterGroup.on('click', function(a) {
+	      var supportedServices="",count=0;
+	      var constantServices={burn_care_unit:"Burn care unit",cardiology:"Cardiology",neurology:"Neurology",maternity:"Maternity ward",orthopaedics:"Orthopaedics",ophthalmology:"Ophthalmology"};
               //console.log(a.layer.feature.properties);
               $("#hospital_distance").html(myloc.latlng.distanceTo(L.latLng(a.layer.feature.geometry.coordinates[1], a.layer.feature.geometry.coordinates[0])) + ' m');
               $("#hospital_name").html(a.layer.feature.properties.name);
               $("#hospital_address").html(a.layer.feature.properties.address);
               $("#hospital_category").html(a.layer.feature.properties.category);
               //$("#hospital_speciality").html(a.layer.feature.properties.speciality);
-              //$("#hospital_services").html(a.layer.feature.properties.services);
+              for(var i in constantServices) {
+		if(a.layer.feature.properties[i] === "yes"){
+		  if(count>0)supportedServices = supportedServices + ", " ;
+		  supportedServices = supportedServices + constantServices[i];
+		  count++;
+		}
+	      }	    
+              $("#hospital_services").html(supportedServices);
               $("#hospital_timings").html(a.layer.feature.properties.timings);
               $("#hospital_contact").html(a.layer.feature.properties.contact_no);
               //$("#hospital_ratings").html(a.layer.feature.properties.ratings);
@@ -190,43 +199,16 @@
                   clusterGroup.addLayer(layer);
                 });
               }
-              if ($('input[name=services]:checked').val() == "Burn_care_unit") {
-                clusterGroup.eachLayer(function(layer) {
-                  if (layer.feature.properties.burn_care_unit == "no") {
-                    clusterGroup.removeLayer(layer);
-                  }
-                });
-              } else if ($('input[name=services]:checked').val() == "Cardiology") {
-                clusterGroup.eachLayer(function(layer) {
-                  if (layer.feature.properties.cardiology == "no") {
-                    clusterGroup.removeLayer(layer);
-                  }
-                });
-              } else if ($('input[name=services]:checked').val() == "Neurology") {
-                clusterGroup.eachLayer(function(layer) {
-                  if (layer.feature.properties.neurology == "no") {
-                    clusterGroup.removeLayer(layer);
-                  }
-                });
-              } else if ($('input[name=services]:checked').val() == "Maternity_ward") {
-                clusterGroup.eachLayer(function(layer) {
-                  if (layer.feature.properties.maternity == "no") {
-                    clusterGroup.removeLayer(layer);
-                  }
-                });
-              } else if ($('input[name=services]:checked').val() == "Orthopaedics") {
-                clusterGroup.eachLayer(function(layer) {
-                  if (layer.feature.properties.orthopaedics == "no") {
-                    clusterGroup.removeLayer(layer);
-                  }
-                });
-              } else if ($('input[name=services]:checked').val() == "Ophthalmology") {
-                clusterGroup.eachLayer(function(layer) {
-                  if (layer.feature.properties.opthalmology == "no") {
-                    clusterGroup.removeLayer(layer);
-                  }
-                });
-              }
+               var constantServices={burn_care_unit:"Burn_care_unit",cardiology:"Cardiology",neurology:"Neurology",maternity:"Maternity_ward",orthopaedics:"Orthopaedics",ophthalmology:"Opthalmology"};
+               for(var i in constantServices) {
+		 if ($('input[name=services]:checked').val() == constantServices[i]) {
+		  clusterGroup.eachLayer(function(layer) {
+		    if (layer.feature.properties[i] == "no") {
+		      clusterGroup.removeLayer(layer);
+		    }
+		  });
+		}
+	       }	 
               if ($('input[name=category]:checked').val() == "Public") {
                 clusterGroup.eachLayer(function(layer) {
                   if (layer.feature.properties.category != "public") {
