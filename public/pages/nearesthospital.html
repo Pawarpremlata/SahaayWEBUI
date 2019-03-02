@@ -117,7 +117,7 @@
         function onLocationFound(myloc) {
           L.marker(myloc.latlng).addTo(map);
           var filterCircle;
-          var myLayer = L.mapbox.featureLayer().loadURL('/data/kurla_info.geojson');
+          var myLayer = L.mapbox.featureLayer().loadURL('/data/kurla.geojson');
           myLayer.on('ready', function(e) {
             var clusterGroup = new L.markerClusterGroup();
             e.target.eachLayer(function(layer) {

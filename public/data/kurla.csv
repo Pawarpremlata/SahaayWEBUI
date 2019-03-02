@@ -1,0 +1,30 @@
+longitude,latitude,address,name,contact_no,category,timings,burn_care_unit,cardiology,neurology,maternity,orthopaedics,ophthalmology
+72.9037,19.0792,"Jayant Arcade, 4th Floor, Rajawadi, M.G.Road, Ghatkopar(E)",Bakul Parekh Children's Hospital,2221026858,private,24*7,no,no,no,no,no,no
+72.9057,19.0783,"1, 2, 3, Gautam Building, Opposite Balaji Temple, Tilak Road, Ghatkopar (E)",Dr Trivedis Maternity and Nursing Home,2261480707,private,24*7,no,no,no,no,no,no
+72.9062,19.0853,"Shradhanand Road, Ghatkopar (W), Mumbai",H. J. Doshi Ghatkopar Hindu Sabha Hospital,2225094451,private,24*7,no,yes,yes,yes,no,no
+72.8829242,19.0625228,"S.G.Barve Road, Kurla, Mumbai-70",Dr .Desais Nursing Home,2226525251,private,10:00 am - 1:00 pm &6:00 pm - 8:00 pm,no,no,no,yes,no,no
+72.843,19.0769,"121, Nehru Nagar, Kurla (E), Mumbai",Ashvini Maternity and Surgical Nursing Home,2225140472,private,24*7,no,no,no,yes,no,no
+72.8863,19.0761,"Kurla(E), Mumbai",Kohinoor Hospital,2267556755,private,24*7,yes,yes,yes,yes,yes,no
+72.9047,19.0844,"Kirol Road, Opp LBS Road, Kurla(W), Mumbai",Shreeji Hospital,2225153465,private,24*7,no,no,yes,yes,no,no
+72.9049,19.0825,"Nilkanth Shopping Centre Corner, Cama Lane, Ghatkopar(W), Mumbai",Varun Cardiac Clinic,2225010600,private,24*7,no,yes,no,no,no,no
+72.9051026,19.082354,"101-102, Gayatridham, Derasar Lane, Ghatkopar(E)",Aryan Hospital and Iccu - Kurla-Mumbai,2225275999,private,24*7,no,yes,no,no,yes,no
+72.8412418,19.0579437,"D-28 & 29, Nehru Nagar, Station Road, Kurla (E),Mumbai",Ashvini Maternity and Surgical Nursing Home,2225140472,private,24*7,no,no,no,yes,yes,no
+72.8819,19.0811,"121, Nehru Nagar Kurla (E), Mumbai",City Hospital And Reserch Centre,2225041888,private,24*7,yes,yes,yes,yes,yes,no
+72.8770505,19.0754649,"Sagar Palace B Wing, Sonapur Lane, F.P.P. Marg, Off L B S Marg, Kurla (W), Mumbai","CGHS Dispensary No.6, Ghatkopar",2225149229,public,7.30-2pm,no,no,no,no,no,no
+72.9379362,19.1403981,"Flat No.25, C.G.S.Colony, Ghatkopar",CG Eye Foundaton and Shree Ghatkopar Brahman Samaj,2225012071,private,9am-7pm,no,no,no,no,no,yes
+72.9067,19.0825,"Samaj Bhavan, 5th Floor, Joshi Lane, M G Road, Ghatkopar",Nayan Eye Centre,9820998830,private,10:30am-1pm& 5:30-8pm,no,no,no,no,no,yes
+72.9066,19.0748,"Chandrika Bldg., Ground Floor, R.B.Mehta Rd, Ghatkopar(E), Mumbai",Dr Mehta Nursing Home,2225062742,private,10am-8pm,no,no,no,no,no,no
+72.9055,19.0762,"198/1, Garodia Palace, Garodia Nagar, 90 Feet Road, Ghatkopar (E)",Ashirwad Heart Hospital,2221025911,private,24*7,no,yes,no,no,no,no
+72.9038,19.0695,"1, Vivek - 67, Tilak Road, Ghatkopar (E), Mumbai",Rane Heart Hospital,2225258404,private,24*7,no,yes,no,no,no,no
+72.8819,19.0811,"37, Pestom Sagar, Road No.2, Chembur",City Hospital And Reserch Centre,2225041888,private,24*7,no,yes,yes,yes,yes,no
+72.9011,19.0598,"Sagar Palace B Wing, Sonapur Lane, F.P.P. Marg, Off L B S Marg, Kurla (W) Mumbai",Kolekar Hospiatal,222520115,private,24*7,no,no,no,yes,yes,no
+72.899,19.0597,Rameshwara Complex,Aayush Eye Clinic,2225288306,private,"10am-1pm, 5-8pm",no,no,no,no,no,yes
+72.9058,19.0784,"103, Tilak Rd, Maheshwar Nagar, Sindhu Wadi, Ghatkopar (E), Mumbai, Maharashtra 400077",Aadhar Orthodic Hospital,2221023211,private,24*7,no,no,no,no,yes,no
+72.9083,19.0866,"22, 2nd Floor Laxmi Shopping Centre, Ghatkopar(W), Mumbai, Maharashtra 400086",Nidan Hospital,2225165130,private,8am-8pm,no,no,no,no,no,no
+72.9061,19.0879,"Dipti Solitaire, 101, MG Road, Above Axis Bank, Kapol wadi, Pant Nagar, Ghatkopar West, Mumbai, Maharashtra 400086",Sharan Hospital,8071280749,public,9am-9pm,no,no,no,no,yes,yes
+72.906,19.0868,"Ground floor, Devika Niwas, next to MG Road, Kapol wadi, Ghatkopar(W), Mumbai, Maharashtra 400086",Dr. Vinod Joshi Maternity Nursing Home,2225133323,private,24*7,no,no,no,yes,no,no
+72.8857,19.0778," Shop No.12, Building 19 B, Kohinoor City, Phase -2, Near Kohinoor Hospital, Kurla West, Premier Residencies, Kurla, Mumbai, Maharashtra 400070",Aesthetica  Clinic,7303344369,private,10am- 9pm,no,no,no,yes,no,no
+72.9479,19.1718,"Shop No.2Ashirwad Building P.K. Road, Mulund(W), Mumbai  400080",New Bharat Medical Store,2225609125,private,9am-12am,no,no,no,no,no,no
+72.903,19.0757,"C-5, Satyam Shopping Centre, Mahatma Gandhi Road, Ghatkopar (E), Mumbai 400077",Tara Neo-Surg. Hospital,2221021603,private,8am-9pm,no,no,yes,no,no,no
+72.8991,19.0601,"106, Charisma Centre, 1st Floor, Opp Vagads, Above Cambridge Showroom, Chembur (E), Mumbai 400071",Nivaran Dental Diagnostic Centre,7208001050,private,10am-9pm,no,no,no,no,no,no
+72.8828,19.0832,"Patelwadi Kurla, Vidyavihar Society, Kurla, Mumbai 400070",Varsha Hospital,2256133327,private,8am-9pm,no,no,no,yes,yes,no
