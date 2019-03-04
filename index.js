@@ -29,6 +29,10 @@ app.get("/nearesthospital", function(req, res) {
   res.sendFile(path.join(__dirname + "/public/pages/nearesthospital.html"));
 });
 
+app.get("/filterhospital", function(req, res) {
+  res.sendFile(path.join(__dirname + "/public/pages/filterhospital.html"));
+});
+
 app.get("/tips", function(req, res) {
   res.sendFile(path.join(__dirname + "/public/pages/tips.html"));
 });
