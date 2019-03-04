@@ -1,19 +1,21 @@
 var express = require("express");
 var pg = require("pg");
-var app = express();
+
 var path = require("path");
-var bodyParser = require('body-parser');
-var config = {
-  user: 'postgres',
-  database: 'postgres',
-  password: 'super',
-  port: 5432,
-  max: 10, // max number of connection can be open to database
-  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
-};
-var pool = new pg.Pool(config);
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+// var bodyParser = require('body-parser');
+// var config = {
+//   user: 'postgres',
+//   database: 'postgres',
+//   password: 'super',
+//   port: 5432,
+//   max: 10, // max number of connection can be open to database
+//   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+// };
+// var pool = new pg.Pool(config);
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+
+var app = express();
 
 app.use("/images", express.static(__dirname + "/public/images"));
 app.use("/data", express.static(__dirname + "/public/data"));
@@ -44,38 +46,36 @@ app.get("/login", function(req, res) {
 });
 
 
-app.post('/users', function(req, res) {
+// app.post('/users', function(req, res) {
+//   pool.connect(function(err, client, done) {
+//     if (err) {
+//       console.log("not able to get connection " + err);
+//       res.status(400).send(err);
+//     }
+//     client.query('INSERT INTO users(name, email, password, bloodgrp, age, gender, allergies, address, contact) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)', [req.body.name, req.body.email, req.body.password, req.body.bloodgrp, req.body.age, req.body.gender, req.body.allergies, req.body.address, req.body.contact]);
+//     //call `done()` to release the client back to the pool
+//     done();
+//     res.redirect('/login');
+//   });
+// });
 
-  pool.connect(function(err, client, done) {
-    if (err) {
-      console.log("not able to get connection " + err);
-      res.status(400).send(err);
-    }
-    client.query('INSERT INTO users(name, email, password, bloodgrp, age, gender, allergies, address, contact) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)', [req.body.name, req.body.email, req.body.password, req.body.bloodgrp, req.body.age, req.body.gender, req.body.allergies, req.body.address, req.body.contact]);
-    //call `done()` to release the client back to the pool
-    done();
-    res.redirect('/login');
+// app.post('/feedback', function(req, res) {
+//   pool.connect(function(err, client, done) {
+//     if (err) {
+//       console.log("not able to get connection " + err);
+//       res.status(400).send(err);
+//     }
+//     client.query('INSERT INTO feedback(name, email, comment) VALUES($1, $2, $3)', [req.body.name, req.body.email, req.body.comment]);
+//     //call `done()` to release the client back to the pool
+//     done();
+//     res.redirect('/');
+//   });
+// });
 
-  });
-});
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+app.listen(port);
 
-app.post('/feedback', function(req, res) {
-
-  pool.connect(function(err, client, done) {
-    if (err) {
-      console.log("not able to get connection " + err);
-      res.status(400).send(err);
-    }
-    client.query('INSERT INTO feedback(name, email, comment) VALUES($1, $2, $3)', [req.body.name, req.body.email, req.body.comment]);
-    //call `done()` to release the client back to the pool
-    done();
-    res.redirect('/');
-
-  });
-});
-
-
-
-app.listen(3001);
-
-console.log("Running at http://localhost:3001 ");
+console.log("Running at http://localhost:" + port);
