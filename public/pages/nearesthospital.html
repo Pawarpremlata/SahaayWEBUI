@@ -270,15 +270,6 @@
     // Initialize the list
     buildLocationList(hospitals);
 
-    map.on('click', 'hospitalslayer', function(e) {
-      var coordinates = e.features[0].geometry.coordinates.slice();
-      var name = e.features[0].properties.name;
-      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-      }
-      getRoute(coordinates);
-    });
-
     // Change the cursor to a pointer when the mouse is over the hospitals layer.
     map.on('mouseenter', 'hospitalslayer', function() {
       map.getCanvas().style.cursor = 'pointer';
@@ -346,31 +337,30 @@
     });
   });
 
-
-  map.on('click', function(e) {
-    var features = map.queryRenderedFeatures(e.point, {
-      layers: ['hospitalslayer']
-    });
-    if (features.length) {
-      var clickedPoint = features[0];
-      // 1. Fly to the point
-      flyToHospital(clickedPoint);
-      // 2. Close all other popups and display popup for clicked hospital
-      createPopUp(clickedPoint);
-      // 3. Highlight listing in sidebar (and remove highlight for all other listings)
-      var activeItem = document.getElementsByClassName('active');
-      if (activeItem[0]) {
-        activeItem[0].classList.remove('active');
-      }
-      var selectedFeature = clickedPoint.properties.address;
-      for (var i = 0; i < hospitals.features.length; i++) {
-        if (hospitals.features[i].properties.address === selectedFeature) {
-          selectedFeatureIndex = i;
-        }
-      }
-      var listing = document.getElementById('listing-' + selectedFeatureIndex);
-      listing.classList.add('active');
+  map.on('click', 'hospitalslayer', function(e) {
+    var coordinates = e.features[0].geometry.coordinates.slice();
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
+    getRoute(coordinates);
+    var clickedPoint = e.features[0];
+    // 1. Fly to the point
+    flyToHospital(clickedPoint);
+    // 2. Close all other popups and display popup for clicked hospital
+    createPopUp(clickedPoint);
+    // 3. Highlight listing in sidebar (and remove highlight for all other listings)
+    var activeItem = document.getElementsByClassName('active');
+    if (activeItem[0]) {
+      activeItem[0].classList.remove('active');
+    }
+    var selectedFeature = clickedPoint.properties.address;
+    for (var i = 0; i < hospitals.features.length; i++) {
+      if (hospitals.features[i].properties.address === selectedFeature) {
+	selectedFeatureIndex = i;
+      }
+    }
+    var listing = document.getElementById('listing-' + selectedFeatureIndex);
+    listing.classList.add('active');
   });
 
 
@@ -417,8 +407,8 @@
         details.innerHTML += ' &middot; ' + prop.contact_no;
       }
       if (prop.distance) {
-        var roundedDistance = Math.round(prop.distance * 100) / 100;
-        details.innerHTML += '<p><strong>' + roundedDistance + ' meters away</strong></p>';
+        var roundedDistance = Math.floor(prop.distance) / 1000;
+        details.innerHTML += '<p><strong>' + roundedDistance + ' km away</strong></p>';
       }
       link.addEventListener('click', function(e) {
         // Update the currentFeature to the hospital associated with the clicked link
@@ -427,7 +417,9 @@
         flyToHospital(clickedListing);
         // 2. Close all other popups and display popup for clicked hospital
         createPopUp(clickedListing);
-        // 3. Highlight listing in sidebar (and remove highlight for all other listings)
+        //  3. Get the route and directions
+        getRoute(clickedListing.geometry.coordinates);
+        // 4. Highlight listing in sidebar (and remove highlight for all other listings)
         var activeItem = document.getElementsByClassName('active');
         if (activeItem[0]) {
           activeItem[0].classList.remove('active');
@@ -489,7 +481,7 @@
       var tripInstructions = [];
       for (var i = 0; i < steps.length; i++) {
         tripInstructions.push('<li>' + steps[i].maneuver.instruction) + '</li>';
-        instructions.innerHTML = '<span class="duration">Time: ' + Math.floor(data.duration / 60) + ' min </span><span class="duration"><br>Distance: ' + data.distance + ' m </span><br><span class="duration">Directions: </span><div id="instructionlist">' + tripInstructions + '</div>';
+        instructions.innerHTML = '<span class="duration">Time: ' + Math.floor(data.duration / 60) + ' min </span><span class="duration"><br>Distance: ' + Math.floor(data.distance)/1000 + ' km </span><br><span class="duration">Directions: </span><div id="instructionlist">' + tripInstructions + '</div>';
       }
       map.fitBounds([
         [start[0], start[1]],
