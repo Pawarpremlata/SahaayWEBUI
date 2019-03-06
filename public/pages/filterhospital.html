@@ -111,6 +111,10 @@
         <h2 align="center" id='hospital_name'>-</h2>
         <div class="table-responsive">
           <table class="table">
+	    <tr>
+              <td>Website</td>
+              <td id='hospital_website'>-</td>
+            </tr>
             <tr>
               <td>Distance</td>
               <td id='hospital_distance'>-</td>
@@ -122,10 +126,6 @@
             <tr>
               <td>Category</td>
               <td id='hospital_category'>-</td>
-            </tr>
-            <tr>
-              <td>Speciality</td>
-              <td id='hospital_speciality'>-</td>
             </tr>
             <tr>
               <td>Services</td>
@@ -162,7 +162,7 @@
   function onLocationFound(myloc) {
     L.marker(myloc.latlng).addTo(map);
     var filterCircle;
-    var myLayer = L.mapbox.featureLayer().loadURL('/data/kurlanew.geojson');
+    var myLayer = L.mapbox.featureLayer().loadURL('/data/newkurlanew.geojson');
     myLayer.on('ready', function(e) {
       var clusterGroup = new L.markerClusterGroup();
       e.target.eachLayer(function(layer) {
@@ -184,9 +184,9 @@
         //console.log(a.layer.feature.properties);
         $("#hospital_distance").html(myloc.latlng.distanceTo(L.latLng(a.layer.feature.geometry.coordinates[1], a.layer.feature.geometry.coordinates[0])) + ' m');
         $("#hospital_name").html(a.layer.feature.properties.name);
+        $("#hospital_website").html('<a href="http://'+a.layer.feature.properties.website+'" target="_blank"><span class="glyphicon glyphicon-globe"></span></a>');
         $("#hospital_address").html(a.layer.feature.properties.address);
         $("#hospital_category").html(a.layer.feature.properties.category);
-        //$("#hospital_speciality").html(a.layer.feature.properties.speciality);
         for (var i in constantServices) {
           if (a.layer.feature.properties[i] === "yes") {
             if (count > 0) supportedServices = supportedServices + ", ";

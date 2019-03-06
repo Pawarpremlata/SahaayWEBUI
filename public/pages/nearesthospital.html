@@ -220,7 +220,7 @@
     zoom: 11 // initial zoom
   });
 
-  $.getJSON("/data/kurlanew.geojson", function(data) {
+  $.getJSON("/data/newkurlanew.geojson", function(data) {
     hospitals = data;
   });
 
@@ -398,7 +398,7 @@
       link.href = '#';
       link.className = 'title';
       link.dataPosition = i;
-      link.innerHTML = prop.name;
+      link.innerHTML = prop.name+'<a href="http://'+prop.website+'" target="_blank"><span class="glyphicon glyphicon-globe"></span></a>';
       // Create a new div with the class 'details' for each hospital and fill it with the category and contact number
       var details = listing.appendChild(document.createElement('div'));
       details.innerHTML = '<p>' + prop.address + '</p>';
