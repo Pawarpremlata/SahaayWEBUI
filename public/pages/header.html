@@ -1,26 +1,57 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <title>Sahaay</title>
-  <link rel="shortcut icon" href="/images/logo_c.png" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous" />
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+      $(document).ready(function () {
+	  var url = window.location;
+	  console.log(url);
+	  $('.navbar .nav').find('.active').removeClass('active');
+	  $('.navbar .nav li a').each(function () {
+	      if (this.href == url) {
+		  $(this).parent().addClass('active');
+	      }
+	  }); 
+      });
+  </script>
+  <style>
+  /* For desktop */
+  @media only screen and (min-width:360px) {
+    #newheader{
+      width:70%;
+      color:#e60000;
+      font-size:200%;
+    }
+    #newheader #logo{
+      height:150px;
+      margin:0;
+      border:0;
+    }
+  }
+  /* For mobile devices */
+  @media only screen and (max-width:360px) {
+    #newheader{
+      width:100%;
+      color:#e60000;
+      font-size:70%;
+    }
+    #newheader #logo{
+      height:60px;
+      margin:0;
+      border:0;
+    }
+  }
+  </style>
 </head>
 
 <body>
   <div id="page-header">
-    <table align="center" border="0" style="width:70%">
+    <table id="newheader" align="center" >
       <tr>
         <th>
-          <img src="/images/logo_c.png" align="right" alt="Sahaay LOGO" width="220" height="150" />
+          <img src="/images/logo_c.png" id="logo" align="right" alt="Sahaay LOGO"  />
         </th>
         <th>
-          <h1 style="color:#e60000">
-            <b>SAHAAY- A Medical Assistance System</b>
-          </h1>
+          <b>SAHAAY- A Medical Assistance System</b>
         </th>
       </tr>
     </table>
