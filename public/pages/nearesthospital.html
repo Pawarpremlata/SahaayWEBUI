@@ -22,6 +22,12 @@
   });
   </script>
   <style>
+  /* For desktop */
+  @media only screen and (min-width:360px) {}
+
+  /* For mobile devices */
+  @media only screen and (max-width:360px) {}
+
   body {
     color: #404040;
     margin: 0;
@@ -355,7 +361,7 @@
     var selectedFeature = clickedPoint.properties.address;
     for (var i = 0; i < hospitals.features.length; i++) {
       if (hospitals.features[i].properties.address === selectedFeature) {
-	selectedFeatureIndex = i;
+        selectedFeatureIndex = i;
       }
     }
     var listing = document.getElementById('listing-' + selectedFeatureIndex);
@@ -397,7 +403,7 @@
       link.href = '#';
       link.className = 'title';
       link.dataPosition = i;
-      link.innerHTML = prop.name+'<a href="http://'+prop.website+'" target="_blank"><span class="glyphicon glyphicon-globe"></span></a>';
+      link.innerHTML = prop.name + '<a href="http://' + prop.website + '" target="_blank"><span class="glyphicon glyphicon-globe"></span></a>';
       // Create a new div with the class 'details' for each hospital and fill it with the category and contact number
       var details = listing.appendChild(document.createElement('div'));
       details.innerHTML = '<p>' + prop.address + '</p>';
@@ -480,7 +486,7 @@
       var tripInstructions = [];
       for (var i = 0; i < steps.length; i++) {
         tripInstructions.push('<li>' + steps[i].maneuver.instruction) + '</li>';
-        instructions.innerHTML = '<span class="duration">Time: ' + Math.floor(data.duration / 60) + ' min </span><span class="duration"><br>Distance: ' + Math.floor(data.distance)/1000 + ' km </span><br><span class="duration">Directions: </span><div id="instructionlist">' + tripInstructions + '</div>';
+        instructions.innerHTML = '<span class="duration">Time: ' + Math.floor(data.duration / 60) + ' min </span><span class="duration"><br>Distance: ' + Math.floor(data.distance) / 1000 + ' km </span><br><span class="duration">Directions: </span><div id="instructionlist">' + tripInstructions + '</div>';
       }
       map.fitBounds([
         [start[0], start[1]],

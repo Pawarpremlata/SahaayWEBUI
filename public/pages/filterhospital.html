@@ -24,9 +24,15 @@
       });
     </script>
   <style>
+    /* For desktop */
+    @media only screen and (min-width:360px) {
+    }
+    /* For mobile devices */
+    @media only screen and (max-width:360px) {
+    }
     .map {
-        height: 40vw;
-      }
+      height: 40vw;
+    }
     </style>
 </head>
 
@@ -111,7 +117,7 @@
         <h2 align="center" id='hospital_name'>-</h2>
         <div class="table-responsive">
           <table class="table">
-	    <tr>
+            <tr>
               <td>Website</td>
               <td id='hospital_website'>-</td>
             </tr>
@@ -184,7 +190,7 @@
         //console.log(a.layer.feature.properties);
         $("#hospital_distance").html(myloc.latlng.distanceTo(L.latLng(a.layer.feature.geometry.coordinates[1], a.layer.feature.geometry.coordinates[0])) + ' m');
         $("#hospital_name").html(a.layer.feature.properties.name);
-        $("#hospital_website").html('<a href="http://'+a.layer.feature.properties.website+'" target="_blank"><span class="glyphicon glyphicon-globe"></span></a>');
+        $("#hospital_website").html('<a href="http://' + a.layer.feature.properties.website + '" target="_blank"><span class="glyphicon glyphicon-globe"></span></a>');
         $("#hospital_address").html(a.layer.feature.properties.address);
         $("#hospital_category").html(a.layer.feature.properties.category);
         for (var i in constantServices) {
