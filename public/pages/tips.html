@@ -13,13 +13,23 @@
     $(function(){
       $("#header").load("/header"); 
     });
+    $(document).ready(function(){
+        $('#query').keypress(function(e){
+          if(e.keyCode==13)
+          $('#search-button').click();
+        });
+    });
   </script>
   <style type="text/css">
   /* For desktop */
   @media only screen and (min-width:360px) {}
 
   /* For mobile devices */
-  @media only screen and (max-width:360px) {}
+  @media only screen and (max-width:360px) {
+    #results {
+      padding: 0;
+    }
+  }
   </style>
 </head>
 

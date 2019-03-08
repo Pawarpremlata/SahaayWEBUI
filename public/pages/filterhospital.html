@@ -31,7 +31,7 @@
     @media only screen and (max-width:360px) {
     }
     .map {
-      height: 40vw;
+      height: 35vw;
     }
     </style>
 </head>
@@ -91,7 +91,7 @@
               <div class="radio">
                 <label><input type="radio" name="services" id="orthopaedics" value="Orthopaedics">Orthopaedics</label>
               </div>
-              <h5><b>Budget Range:</b></h5>
+              <!--<h5><b>Budget Range:</b></h5>
               <div class="form-group row">
                 <div class="col-sm-6">
                   <label for="fromrange"> From(₹)</label>
@@ -101,13 +101,13 @@
                   <label for="torange"> To(₹)</label>
                   <input class="form-control" id="torange" type="text">
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
-          <div class="panel panel-default">
+          <!--<div class="panel panel-default">
             <div class="panel-heading">Advanced Report Generation</div>
             <div class="panel-body">Generate Reports</div>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="col-lg-7">
@@ -168,7 +168,7 @@
   function onLocationFound(myloc) {
     L.marker(myloc.latlng).addTo(map);
     var filterCircle;
-    var myLayer = L.mapbox.featureLayer().loadURL('/data/newkurlanew.geojson');
+    var myLayer = L.mapbox.featureLayer().loadURL('/data/kurla.geojson');
     myLayer.on('ready', function(e) {
       var clusterGroup = new L.markerClusterGroup();
       e.target.eachLayer(function(layer) {
