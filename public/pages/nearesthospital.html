@@ -201,7 +201,20 @@
   <div id="header"></div>
   <div class="container-fluid">
     <div class="row">
-      <!-- Try radius, Cost range and Status(open/closed)-->
+      <!-- Try Cost range -->
+      <div class="col-lg-2">
+        <div class="form-group">
+          <label for="radius">Radius:</label>
+          <select class="form-control" id="radius">
+            <option value="any" selected>Any</option>
+            <option value="1">1 km</option>
+            <option value="2">2 km</option>
+            <option value="3">3 km</option>
+            <option value="4">4 km</option>
+            <option value="5">5 km</option>
+          </select>
+        </div>
+      </div>
       <div class="col-lg-2">
         <div class="form-group">
           <label for="category">Category:</label>
@@ -239,7 +252,18 @@
           </select>
         </div>
       </div>
+      <div class="col-lg-2">
+        <div class="form-group">
+          <label for="status">Status:</label>
+          <select class="form-control" id="status">
+            <option value="any" selected>Any</option>
+            <option value="Open">Open</option>
+            <option value="Closed">Closed</option>
+          </select>
+        </div>
+      </div>
     </div>
+    
     <hr id="horizontalline">
     <div class="row">
       <div class="col-lg-2 sidebar">
@@ -359,18 +383,14 @@
           if (time >= timing[0] && time < timing[1])
             status = "Open"
         }
-        Object.defineProperty(hospital.properties, 'status', {
-          value: status
-        });
+        hospital.properties["status"] = String(status);
       });
       hospitals.features.forEach(function(hospital) {
-        Object.defineProperty(hospital.properties, 'distance', {
-          value: turf.distance(start, hospital.geometry, options),
-          writable: true,
-          enumerable: true,
-          configurable: true
-        });
+        hospital.properties["distance"] = turf.distance(start, hospital.geometry, options);
       });
+
+      map.getSource('hospitalsSource').setData(hospitals);
+
       hospitals.features.sort(function(a, b) {
         if (a.properties.distance > b.properties.distance) {
           return 1;
@@ -392,13 +412,18 @@
     $("#category").on('change', applyFilters);
     $("#services").on('change', applyFilters);
     $("#ratings").on('change', applyFilters);
-
+    $("#status").on('change', applyFilters);
 
     function applyFilters() {
+      var radius = $("#radius").val();
       var category = $("#category").val();
       var services = $("#services").val();
       var ratings = $("#ratings").val();
+      var status = $("#status").val();
       var filter = ["all"];
+      if (radius != "any") {
+        filter.push(['<=', 'distance', Number(radius)]);
+      }
       if (category != "all") {
         filter.push(['==', 'category', category]);
       }
@@ -418,6 +443,10 @@
       if (ratings != "any") {
         filter.push(['>=', 'rating', Number(ratings)]);
       }
+      if (status != "any") {
+        filter.push(['==', 'status', status]);
+      }
+      console.log('filter:->',filter);
       map.setFilter('hospitalslayer', filter);
       var features = map.querySourceFeatures("hospitalsSource", {
         filter: filter
