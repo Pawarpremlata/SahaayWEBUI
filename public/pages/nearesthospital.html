@@ -386,33 +386,7 @@
         listings.removeChild(listings.firstChild);
       }
       buildLocationList(hospitals);
-
-      function sortLonLat(hospitalIdentifier) {
-        var lats = [hospitals.features[hospitalIdentifier].geometry.coordinates[1], start[1]];
-        var lons = [hospitals.features[hospitalIdentifier].geometry.coordinates[0], start[0]];
-
-        var sortedLons = lons.sort(function(a, b) {
-          if (a > b) {
-            return 1;
-          }
-          if (a.distance < b.distance) {
-            return -1;
-          }
-          return 0;
-        });
-        var sortedLats = lats.sort(function(a, b) {
-          if (a > b) {
-            return 1;
-          }
-          if (a.distance < b.distance) {
-            return -1;
-          }
-          return 0;
-        });
-      }
-      sortLonLat(0);
       getRoute(end);
-
     });
     $("#radius").on('change', applyFilters);
     $("#category").on('change', applyFilters);
@@ -606,12 +580,12 @@
           tripInstructions.push('<li>' + steps[i].maneuver.instruction) + '</li>';
           instructions.innerHTML = '<span class="big">Address: </span>' + endcord.properties.address + '<br><h2 align=center>Driving</h2><hr id="horizontalline"><span class="big">Time to reach: ' + Math.floor(data.duration / 60) + ' min </span><span class="big"><br>Road distance: ' + Math.floor(data.distance) / 1000 + ' km </span><br><span class="big">Directions: </span><div id="instructionlist">' + tripInstructions + '</div>';
         }
-        // map.fitBounds([
-        //   [start[0], start[1]],
-        //   [nowend[0], nowend[1]]
-        // ], {
-        //   padding: 140
-        // });
+        map.fitBounds([
+          [start[0], start[1]],
+          [nowend[0], nowend[1]]
+        ], {
+          padding: 120
+        });
       };
       req.send();
     }
