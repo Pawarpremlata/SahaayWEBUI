@@ -20,31 +20,31 @@ app.use("/data", express.static(__dirname + "/public/data"));
 app.use("/header", express.static(__dirname + "/public/pages/header.html"));
 
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname + "/index.html"));
+	res.sendFile(path.join(__dirname + "/index.html"));
 });
 
 app.get("/nearesthospital", function(req, res) {
-  res.sendFile(path.join(__dirname + "/public/pages/nearesthospital.html"));
+	res.sendFile(path.join(__dirname + "/public/pages/nearesthospital.html"));
 });
 
-app.get("/filterhospital", function(req, res) {
-  res.sendFile(path.join(__dirname + "/public/pages/filterhospital.html"));
+app.get("/nearestpharmacy", function(req, res) {
+	res.sendFile(path.join(__dirname + "/public/pages/nearestpharmacy.html"));
 });
 
 app.get("/tips", function(req, res) {
-  res.sendFile(path.join(__dirname + "/public/pages/tips.html"));
+	res.sendFile(path.join(__dirname + "/public/pages/tips.html"));
 });
 
 app.get("/feedback", function(req, res) {
-  res.sendFile(path.join(__dirname + "/public/pages/feedback.html"));
+	res.sendFile(path.join(__dirname + "/public/pages/feedback.html"));
 });
 
 app.get("/signup", function(req, res) {
-  res.sendFile(path.join(__dirname + "/public/pages/signup.html"));
+	res.sendFile(path.join(__dirname + "/public/pages/signup.html"));
 });
 
 app.get("/login", function(req, res) {
-  res.sendFile(path.join(__dirname + "/public/pages/login.html"));
+	res.sendFile(path.join(__dirname + "/public/pages/login.html"));
 });
 
 app.get("/dashboard", function(req, res) {
@@ -125,7 +125,7 @@ app.post('/feedback',function(req, res){
 	
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 8000;
+	port = 8000;
 }
 app.listen(port);
 
