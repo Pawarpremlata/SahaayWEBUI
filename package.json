@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "express": "^4.11.0",
-    "pg": "^7.8.0",
+    "express-session": "^1.15.6",
+    "pg": "^7.8.2",
     "twilio": "^3.29.1"
   },
   "author": "Atashi Khatua",

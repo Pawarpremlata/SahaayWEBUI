@@ -3,6 +3,7 @@ var pg = require("pg");
 var app = express();
 var path = require("path");
  var bodyParser = require('body-parser');
+ var session=require('express-session');
  var config = {
    user: 'postgres',
    database: 'postgres',
@@ -11,13 +12,15 @@ var path = require("path");
    max: 10, // max number of connection can be open to database
    idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
  };
+ app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
  var pool = new pg.Pool(config);
  app.use(bodyParser.json());
  app.use(bodyParser.urlencoded({ extended: false }));
-
+var sess;
 app.use("/images", express.static(__dirname + "/public/images"));
 app.use("/data", express.static(__dirname + "/public/data"));
 app.use("/header", express.static(__dirname + "/public/pages/header.html"));
+app.use("/header1", express.static(__dirname + "/public/pages/header1.html"));
 
 app.get("/", function(req, res) {
 	res.sendFile(path.join(__dirname + "/index.html"));
@@ -49,6 +52,26 @@ app.get("/login", function(req, res) {
 
 app.get("/dashboard", function(req, res) {
   res.sendFile(path.join(__dirname + "/public/pages/dashboard.html"));
+});
+
+app.get("/feedback1", function(req, res) {
+  res.sendFile(path.join(__dirname + "/public/pages/feedback1.html"));
+});
+
+app.get("/logout", function(req, res) {
+  res.sendFile(path.join(__dirname + "/public/pages/logout.html"));
+});
+
+app.get("/nearesthospital1", function(req, res) {
+  res.sendFile(path.join(__dirname + "/public/pages/nearesthospital1.html"));
+});
+
+app.get("/filterhospital1", function(req, res) {
+  res.sendFile(path.join(__dirname + "/public/pages/filterhospital1.html"));
+});
+
+app.get("/tips1", function(req, res) {
+  res.sendFile(path.join(__dirname + "/public/pages/tips1.html"));
 });
 
  app.post('/users', function(req, res) {
@@ -94,8 +117,22 @@ app.post('/feedback',function(req, res){
     })
   }else{
          if(results.rowCount==1){
+				sess=req.session;	
+				sess.email=req.body.email;
+	
 				done();
 				res.redirect('/dashboard');
+				
+				app.post('/feedback1',function(req, res){
+					if(err){
+						console.log("not able to get connection "+ err);
+						res.status(400).send(err);
+					} 
+					client.query('INSERT INTO service_feedback(name, email, rating, suggestions) VALUES($1, $2, $3, $4)',[req.body.name, email, req.body.rating,req.body.suggestions]);
+					//call `done()` to release the client back to the pool
+					
+						res.redirect('/dashboard');
+				});
 				app.post('/sub',function(req, res){
                 const accountSid = 'AC8f2597d0199bedbdbb4f98203d77e21e';
                 const authToken = 'd662dfb87866e64826ac15babb662db3';
